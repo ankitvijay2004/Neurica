@@ -11,6 +11,7 @@ import MyProfile from './pages/MyProfile'
 import Doctors from './pages/Doctors'
 import Appointment from './pages/Appointment'
 import Services from './pages/Services'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import { ToastContainer } from 'react-toastify'
@@ -45,6 +46,7 @@ const App = () => {
             <Route path='/doctors' element={<Doctors />} />
             <Route path='/doctors/:speciality' element={<Doctors />} />
             <Route path='/services' element={<Services />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
             <Route path='/reset-password/:token' element={<ResetPassword />} />
           </Routes>

@@ -1,6 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
+
+const quickLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About us', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Doctors', path: '/doctors' },
+    { label: 'Contact us', path: '/contact' },
+    { label: 'Privacy policy', path: '/privacy-policy' }
+];
 
 
 const Footer = () => {
@@ -54,15 +64,15 @@ const Footer = () => {
                             Quick Links
                         </h3>
                         <ul className="space-y-3">
-                            {['Home', 'About us', 'Services', 'Doctors', 'Contact us', 'Privacy policy'].map((item) => (
-                                <li key={item}>
-                                    <a
-                                        href="#"
+                            {quickLinks.map(({ label, path }) => (
+                                <li key={label}>
+                                    <Link
+                                        to={path}
                                         className="text-gray-600 hover:text-blue-600 transition-all flex items-center group text-sm font-medium"
                                     >
                                         <span className="mr-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                                        <span className="group-hover:translate-x-1 transition-transform">{item}</span>
-                                    </a>
+                                        <span className="group-hover:translate-x-1 transition-transform">{label}</span>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

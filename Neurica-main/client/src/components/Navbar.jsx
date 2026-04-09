@@ -60,7 +60,7 @@ const Navbar = () => {
 
   const NavItems = ({ mobile = false }) => (
     <>
-      {navLinks.map(({ path, label, icon: Icon }) => (
+      {navLinks.map(({ path, label, icon }) => (
         <NavLink
           key={path}
           to={path}
@@ -72,7 +72,7 @@ const Navbar = () => {
             }`
           }
         >
-          <Icon className="text-blue-500 text-lg" />
+          {React.createElement(icon, { className: 'text-blue-500 text-lg' })}
           {label}
           {!mobile && <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />}
         </NavLink>
@@ -83,7 +83,7 @@ const Navbar = () => {
   const UserDropdown = () => (
     <div className="absolute top-full right-0 pt-2 text-base font-medium z-30 animate-fade-in">
       <div className="min-w-48 bg-white rounded-lg shadow-xl flex flex-col p-4 gap-3 border border-gray-100">
-        {userMenu.map(({ label, icon: Icon, path, action, isLogout }) => (
+        {userMenu.map(({ label, icon, path, action, isLogout }) => (
           <p
             key={label}
             onClick={() => {
@@ -92,7 +92,7 @@ const Navbar = () => {
             }}
             className={`cursor-pointer flex items-center gap-2 hover:text-blue-600 transition ${isLogout ? 'text-red-500 hover:text-red-600' : ''}`}
           >
-            <Icon className={`${isLogout ? 'text-red-500' : 'text-blue-500'}`} />
+            {React.createElement(icon, { className: isLogout ? 'text-red-500' : 'text-blue-500' })}
             {label}
           </p>
         ))}
@@ -184,13 +184,13 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  {userMenu.map(({ label, icon: Icon, path, action, isLogout }) => (
+                  {userMenu.map(({ label, icon, path, action, isLogout }) => (
                     <button
                       key={label}
                       onClick={() => { action ? action() : navigate(path); setShowMenu(false); }}
                       className={`w-full text-left py-2 px-4 rounded-lg flex items-center gap-3 hover:bg-blue-50 ${isLogout ? 'text-red-500' : ''}`}
                     >
-                      <Icon className={`${isLogout ? 'text-red-500' : 'text-blue-500'}`} />
+                      {React.createElement(icon, { className: isLogout ? 'text-red-500' : 'text-blue-500' })}
                       {label}
                     </button>
                   ))}

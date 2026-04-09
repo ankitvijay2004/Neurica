@@ -71,9 +71,21 @@ const Footer = () => {
                     {/* Contact Info */}
                     <div>
                         <h3 className="text-lg font-semibold text-gray-800 mb-6 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-10 after:h-[3px] after:bg-blue-500 after:rounded-full">
-                            Contact Us
+                            Our Office
                         </h3>
                         <ul className="space-y-4">
+                            <li className="flex items-start">
+                                <div className="bg-blue-50 p-2 rounded-lg mr-4 flex-shrink-0">
+                                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p className="text-gray-700 font-medium">305901 Beawar</p>
+                                    <p className="text-sm text-gray-500 mt-1">Rajasthan, India</p>
+                                </div>
+                            </li>
                             <li className="flex items-start">
                                 <div className="bg-blue-50 p-2 rounded-lg mr-4 flex-shrink-0">
                                     <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,8 +93,7 @@ const Footer = () => {
                                     </svg>
                                 </div>
                                 <div>
-                                    <p className="text-gray-700 font-medium">+91-987-654-3210</p>
-                                    <p className="text-sm text-gray-500 mt-1">Mon-Fri, 9am-6pm</p>
+                                    <p className="text-gray-700 font-medium">Tel: +91 1234567890</p>
                                 </div>
                             </li>
                             <li className="flex items-start">
@@ -92,20 +103,7 @@ const Footer = () => {
                                     </svg>
                                 </div>
                                 <div>
-                                    <p className="text-gray-700 font-medium">hello@neurica.com</p>
-                                    <p className="text-sm text-gray-500 mt-1">We reply within 24 hours</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start">
-                                <div className="bg-blue-50 p-2 rounded-lg mr-4 flex-shrink-0">
-                                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p className="text-gray-700 font-medium">307514 Reoder, Sirohi</p>
-                                    <p className="text-sm text-gray-500 mt-1">Rajasthan, India</p>
+                                    <p className="text-gray-700 font-medium">Email: ankitvijay100@gmail.com</p>
                                 </div>
                             </li>
                         </ul>

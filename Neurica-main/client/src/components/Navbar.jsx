@@ -106,8 +106,8 @@ const Navbar = () => {
       <div className="hidden md:block bg-gradient-to-r from-blue-800 to-green-400 text-white text-sm py-2 px-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex space-x-6">
-            <div className="flex items-center space-x-1"><FaPhoneAlt size={12} /><span>Emergency: +91-987-654-3210</span></div>
-            <div className="flex items-center space-x-1"><FaMapMarkerAlt size={12} /><span>307514 Reoder, Sirohi, Rajasthan, India</span></div>
+            <div className="flex items-center space-x-1"><FaPhoneAlt size={12} /><span>Emergency: +91-1234567890</span></div>
+            <div className="flex items-center space-x-1"><FaMapMarkerAlt size={12} /><span>305901 Beawar, Rajasthan, India</span></div>
           </div>
           <div className="flex items-center space-x-1"><GiMedicines size={14} /><span>24/7 Pharmacy Services</span></div>
         </div>

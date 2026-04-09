@@ -33,7 +33,7 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
-      <div className='min-h-screen flex flex-col'>
+      <div className='min-h-screen flex flex-col app-shell'>
         <main className='flex-grow mx-[5%] md:mx-[5%] py-4'>
           <Routes>
             <Route path='/' element={<Home />} />

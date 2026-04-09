@@ -1,0 +1,12 @@
+{
+  "name": "neurica-workspace-runner",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix ./Neurica-main/client run dev",
+    "dev:client": "npm --prefix ./Neurica-main/client run dev",
+    "dev:admin": "npm --prefix ./Neurica-main/admin run dev",
+    "dev:server": "npm --prefix ./Neurica-main/server run server",
+    "install:all": "npm --prefix ./Neurica-main/client install && npm --prefix ./Neurica-main/admin install && npm --prefix ./Neurica-main/server install"
+  }
+}

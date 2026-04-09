@@ -1,10 +1,21 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
+  const rawUri = process.env.MONGODB_URI || "";
+  const mongoUri = rawUri.trim();
+  const isPlaceholderUri =
+    mongoUri.includes("username:password@cluster.mongodb.net") ||
+    mongoUri.includes("cluster.mongodb.net/neurica");
+
+  if (!mongoUri || isPlaceholderUri) {
+    console.warn("⚠️ MongoDB URI is missing or placeholder. Starting without database connection.");
+    return false;
+  }
+
   // Prevent duplicate connections
   if (mongoose.connection.readyState >= 1) {
     console.log("✅ Already connected to the database");
-    return;
+    return true;
   }
 
   // Attach listeners only once
@@ -25,14 +36,15 @@ const connectDB = async () => {
   });
 
   try {
-    await mongoose.connect(`${process.env.MONGODB_URI}/test`, {
+    await mongoose.connect(mongoUri, {
       serverSelectionTimeoutMS: 5000, // Fail fast if can't reach server
       socketTimeoutMS: 45000,         // Drop idle sockets
       family: 4,                      // Use IPv4 (faster DNS)
     });
+    return true;
   } catch (err) {
     console.error("❌ Failed to connect to the database:", err.message);
-    process.exit(1); // Stop app if DB is critical
+    return false;
   }
 };
 

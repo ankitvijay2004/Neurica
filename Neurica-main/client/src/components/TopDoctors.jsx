@@ -7,118 +7,79 @@ const TopDoctors = () => {
   const navigate = useNavigate();
   const { doctors } = useContext(AppContext);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-blue-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold text-gray-900 mb-4"
-          >
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Elite Medical Team</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
-          >
-            Connect with our board-certified specialists for exceptional healthcare
-          </motion.p>
+    <section className="relative overflow-hidden rounded-[2rem] bg-[#0e1f2f] px-6 md:px-10 py-12 md:py-14 text-white shadow-[0_20px_45px_rgba(8,17,35,0.35)]">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 right-8 w-52 h-52 rounded-full bg-[#14b8a6]/25 blur-3xl" />
+        <div className="absolute -bottom-16 left-0 w-64 h-64 rounded-full bg-[#f36f45]/25 blur-3xl" />
+      </div>
+
+      <div className="relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-9">
+          <div>
+            <p className="text-xs uppercase tracking-[0.22em] text-[#97e7dd] font-semibold">Featured Team</p>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold leading-tight">
+              Top specialists,
+              <span className="text-[#ffd2c5]"> selected for outcomes.</span>
+            </h2>
+          </div>
+          <p className="text-[#c5d6e8] max-w-md">
+            Expert profiles with transparent credentials, real availability, and direct booking access.
+          </p>
         </div>
 
-        {/* Doctors Grid */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5"
         >
           {doctors.slice(0, 8).map((doctor) => (
-            <motion.div
+            <article
               key={doctor._id}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
               onClick={() => navigate(`/appointment/${doctor._id}`)}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer"
+              className="group cursor-pointer rounded-2xl bg-white/10 border border-white/10 hover:bg-white/16 hover:border-white/25 transition-all overflow-hidden"
             >
-              {/* Image */}
-              <div className="relative h-60 bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
+              <div className="relative h-56 bg-gradient-to-br from-white/8 to-white/0 flex items-end justify-center p-3">
                 <img
                   src={doctor.image}
                   alt={doctor.name || 'Doctor'}
-                  className="h-48 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-sm flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full ${doctor.available ? 'bg-green-500' : 'bg-gray-400'}`}></span>
-                  <span className="text-xs font-medium">
-                    {doctor.available ? 'Available' : 'Unavailable'}
-                  </span>
-                </div>
+                <span className={`absolute top-3 right-3 text-[11px] px-2 py-1 rounded-full font-semibold ${doctor.available ? 'bg-[#14b8a6] text-white' : 'bg-white/20 text-white'}`}>
+                  {doctor.available ? 'Open' : 'Busy'}
+                </span>
               </div>
 
-              {/* Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">{doctor.name}</h3>
-                <p className="text-blue-600 font-medium mb-1">{doctor.speciality}</p>
-                
-                {/* Added Degree and Experience */}
-                <p className="text-gray-600 text-sm mb-3">
-                  {doctor.degree || 'BDS, MDS'} - {doctor.experience || '16'} Years Experience
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-white">{doctor.name}</h3>
+                <p className="text-[#9bece3] text-sm mt-0.5 font-semibold">{doctor.speciality}</p>
+                <p className="text-[#c6d8eb] text-sm mt-2">
+                  {doctor.degree || 'BDS, MDS'} | {doctor.experience || '16'} years exp.
                 </p>
-
-                {/* Hover CTA */}
-                <div className="absolute bottom-0 left-0 right-0 h-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0 group-hover:h-1 group-hover:opacity-100 transition-all duration-300" />
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center mt-4">
-                  <span className="inline-flex items-center text-sm text-blue-600 font-medium">
-                    Book Appointment
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
+                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#ffd2c5]">
+                  Book consultation
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 12h15" />
+                  </svg>
+                </p>
               </div>
-            </motion.div>
+            </article>
           ))}
         </motion.div>
 
-        {/* View More */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-center mt-16"
-        >
+        <div className="mt-9 text-center">
           <button
             onClick={() => {
               navigate('/doctors');
               window.scrollTo(0, 0);
             }}
-            className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium rounded-full shadow-md hover:shadow-lg transition-all hover:from-blue-500 hover:to-cyan-400"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#f36f45] hover:bg-[#df5f37] text-white font-semibold transition"
           >
-            View All Doctors
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            Explore All Doctors
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

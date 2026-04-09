@@ -83,12 +83,13 @@ const Contact = () => {
             </h3>
             <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-white shadow-md'>
               <iframe 
-                src="https://www.google.com/maps/place/Beawar,+Rajasthan/@26.1233353,74.2559066,12z/data=!3m1!4b1!4m6!3m5!1s0x396970b3e8f41283:0x957915f749945fa7!8m2!3d26.104585!4d74.3199038!16zL20vMDgwY2wx?entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D" 
+                src="https://www.google.com/maps?q=Beawar,Rajasthan,India&output=embed"
                 width="100%" 
                 height="300" 
                 style={{border:0}} 
                 allowFullScreen="" 
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 title="Google Maps Location"
               ></iframe>
             </div>

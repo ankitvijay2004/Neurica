@@ -32,9 +32,25 @@ app.get("/health", (req, res) => {
 });
 
 const startServer = async () => {
+  const isProduction = process.env.NODE_ENV === "production";
+
   try {
-    await connectDB();
-    await connectCloudinary();
+    const dbConnected = await connectDB();
+    if (!dbConnected && isProduction) {
+      throw new Error("MongoDB connection is required in production.");
+    }
+    if (!dbConnected) {
+      console.warn("⚠️ Running in degraded mode: database features may not work until MongoDB is configured.");
+    }
+
+    try {
+      await connectCloudinary();
+    } catch (cloudinaryErr) {
+      if (isProduction) {
+        throw cloudinaryErr;
+      }
+      console.warn("⚠️ Cloudinary not configured. File upload features may not work in development.");
+    }
 
     app.listen(port, () => {
       console.log(`🚀 Server started on PORT:${port}`);

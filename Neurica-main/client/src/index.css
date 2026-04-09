@@ -1,17 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-
-*{
-  font-family: 'Outfit', sans-serif;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
 @import "tailwindcss";
-/* Define the custom color variable globally */
+
 :root {
-  --primary: #4F46E5;
-  
+  --primary: #f36f45;
+  --ink: #0e1f2f;
+  --surface: #f6f8fb;
+  --surface-strong: #e8edf5;
+  --accent: #14b8a6;
+  --deep: #1f3a8a;
 }
 
-/* Now define custom utility classes */
+* {
+  font-family: 'Manrope', sans-serif;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(20, 184, 166, 0.09) 0%, transparent 38%),
+    radial-gradient(circle at 85% 10%, rgba(243, 111, 69, 0.1) 0%, transparent 34%),
+    linear-gradient(180deg, #f8fafc 0%, #eef3f9 100%);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Sora', sans-serif;
+}
+
 .bg-primary {
   background-color: var(--primary);
 }
@@ -24,13 +44,78 @@
   border-color: var(--primary);
 }
 
-.active hr{
-  display: block;
-
+.app-shell {
+  position: relative;
+  isolation: isolate;
 }
 
-::-webkit-scrollbar{
-  display:none
+.app-shell::before,
+.app-shell::after {
+  content: "";
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.app-shell::before {
+  width: 18rem;
+  height: 18rem;
+  top: 6rem;
+  left: -4rem;
+  background: rgba(243, 111, 69, 0.16);
+  animation: float-orb-a 13s ease-in-out infinite;
+}
+
+.app-shell::after {
+  width: 22rem;
+  height: 22rem;
+  right: -6rem;
+  bottom: 8rem;
+  background: rgba(31, 58, 138, 0.16);
+  animation: float-orb-b 16s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 50px rgba(23, 43, 77, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.section-spacing {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    margin-top: 2.25rem;
+  }
+}
+
+@keyframes float-orb-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(35px, -22px, 0);
+  }
+}
+
+@keyframes float-orb-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-28px, 20px, 0);
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 

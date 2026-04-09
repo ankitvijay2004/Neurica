@@ -8,13 +8,17 @@ import Banner from '../components/Banner'
 
 const Home = () => {
   return (
-    <div>
-     
-         <Header/>
-         <SpecialityMenu/>
-         <TopDoctors/>
-         <Banner/>
-         
+    <div className='space-y-2 md:space-y-4'>
+      <Header />
+      <div className='section-spacing'>
+        <SpecialityMenu />
+      </div>
+      <div className='section-spacing'>
+        <TopDoctors />
+      </div>
+      <div className='section-spacing'>
+        <Banner />
+      </div>
     </div>
   )
 }

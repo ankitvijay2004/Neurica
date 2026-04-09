@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
@@ -19,14 +19,18 @@ const Appointment = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     const navigate = useNavigate()
+    const MotionDiv = motion.div
+    const MotionButton = motion.button
 
-    const fetchDocInfo = async () => {
+    const fetchDocInfo = useCallback(() => {
         const docInfo = doctors.find((doc) => doc._id === docId)
         setDocInfo(docInfo)
         setIsLoading(false)
-    }
+    }, [doctors, docId])
 
-    const getAvailableSolts = async () => {
+    const getAvailableSolts = useCallback(() => {
+        if (!docInfo) return
+
         setDocSlots([])
         let today = new Date()
 
@@ -72,7 +76,7 @@ const Appointment = () => {
 
             setDocSlots(prev => ([...prev, timeSlots]))
         }
-    }
+    }, [docInfo])
 
     const bookAppointment = async () => {
         if (!token) {
@@ -107,13 +111,13 @@ const Appointment = () => {
         if (doctors.length > 0) {
             fetchDocInfo()
         }
-    }, [doctors, docId])
+    }, [doctors.length, fetchDocInfo])
 
     useEffect(() => {
         if (docInfo) {
             getAvailableSolts()
         }
-    }, [docInfo])
+    }, [docInfo, getAvailableSolts])
 
     if (isLoading) {
         return (
@@ -128,7 +132,7 @@ const Appointment = () => {
     }
 
     return docInfo ? (
-        <motion.div 
+        <MotionDiv 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -143,7 +147,7 @@ const Appointment = () => {
             {/* Doctor Details Section */}
             <div className="relative z-10 flex flex-col lg:flex-row gap-8 mb-16">
                 {/* Doctor Image */}
-                <motion.div 
+                <MotionDiv 
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -160,10 +164,10 @@ const Appointment = () => {
                             <img className="w-8 h-8" src={assets.verified_icon} alt="Verified" />
                         </div>
                     </div>
-                </motion.div>
+                </MotionDiv>
 
                 {/* Doctor Info */}
-                <motion.div 
+                <MotionDiv 
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
@@ -215,11 +219,11 @@ const Appointment = () => {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </MotionDiv>
             </div>
 
             {/* Booking Section */}
-            <motion.div 
+            <MotionDiv 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -232,7 +236,7 @@ const Appointment = () => {
                     <h3 className="text-lg font-semibold text-gray-700 mb-4">Select Date</h3>
                     <div className="flex space-x-4 overflow-x-auto pb-4">
                         {docSlots.length > 0 && docSlots.map((item, index) => (
-                            <motion.div 
+                            <MotionDiv 
                                 key={index}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -242,7 +246,7 @@ const Appointment = () => {
                                 <span className="font-medium">{item[0] && daysOfWeek[item[0].datetime.getDay()]}</span>
                                 <span className="text-2xl font-bold">{item[0] && item[0].datetime.getDate()}</span>
                                 <span className="text-xs opacity-80">{item[0] && item[0].datetime.toLocaleString('default', { month: 'short' })}</span>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
                     </div>
                 </div>
@@ -252,21 +256,21 @@ const Appointment = () => {
                     <h3 className="text-lg font-semibold text-gray-700 mb-4">Available Time Slots</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                         {docSlots.length > 0 && docSlots[slotIndex].map((item, index) => (
-                            <motion.div
+                            <MotionDiv
                                 key={index}
                                 whileHover={{ scale: 1.05 }}
                                 onClick={() => setSlotTime(item.time)}
                                 className={`p-3 rounded-lg text-center cursor-pointer transition-all ${item.time === slotTime ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'}`}
                             >
                                 {item.time.toLowerCase()}
-                            </motion.div>
+                            </MotionDiv>
                         ))}
                     </div>
                 </div>
 
                 {/* Book Button */}
                 <div className="flex justify-center">
-                    <motion.button
+                    <MotionButton
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={bookAppointment}
@@ -277,13 +281,13 @@ const Appointment = () => {
                         <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
-                    </motion.button>
+                    </MotionButton>
                 </div>
-            </motion.div>
+            </MotionDiv>
 
             {/* Related Doctors */}
             <RelatedDoctors speciality={docInfo.speciality} docId={docId} />
-        </motion.div>
+        </MotionDiv>
     ) : null
 }
 

@@ -34,7 +34,7 @@ const Contact = () => {
                 </svg>
                 Our Office
               </p>
-              <p className='text-gray-600 mb-2'>307514 Reoder, Sirohi</p>
+              <p className='text-gray-600 mb-2'>305901 Beawar</p>
               <p className='text-gray-600'>Rajasthan, India</p>
             </div>
             
@@ -43,14 +43,14 @@ const Contact = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                Tel: +91 9876543210
+                Tel: +91 1234567890
               </p>
               <p className='text-gray-600 flex items-center'>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-green-500" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                Email: joshijayy421@gmail.com
+                Email: ankitvijay100@gmail.com
               </p>
             </div>
             
@@ -83,7 +83,7 @@ const Contact = () => {
             </h3>
             <div className='aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-white shadow-md'>
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29017.639889648355!2d72.48637549425632!3d24.616618881521728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cd2ab131ddef7%3A0x5c6c8ab89b21dfbf!2sRevdar%2C%20Rajasthan%20307514!5e0!3m2!1sen!2sin!4v1763853005356!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/place/Beawar,+Rajasthan/@26.1233353,74.2559066,12z/data=!3m1!4b1!4m6!3m5!1s0x396970b3e8f41283:0x957915f749945fa7!8m2!3d26.104585!4d74.3199038!16zL20vMDgwY2wx?entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D" 
                 width="100%" 
                 height="300" 
                 style={{border:0}} 

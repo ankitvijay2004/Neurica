@@ -278,4 +278,4 @@ Remember to update the `VITE_BACKEND_URL` in the frontend `.env` files to your p
 - Currency symbol is configurable via environment variables
 
 
-https://neurica-admin.vercel.app
+https://neurica-tg7w.vercel.app/
